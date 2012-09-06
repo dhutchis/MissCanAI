@@ -1,0 +1,7 @@
+-od"bin"
+-of"bin\MissCanAI.exe"
+
+-I"src"
+
+"src\MissCanAI.d"
+
