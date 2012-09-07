@@ -1,0 +1,10 @@
+Dylan Hutchison
+CS 541 Artificial Intelligence HW #1
+Russel & Norvig Book Problem 3.9
+Due 12 September 2012
+
+Finds an optimal solution to the Missionaries and Cannibals problem with 3 missionaries and cannibals on one side of the river.
+Approach: Graph-based Uninformed Bidirectional search.  Alternates expanding state nodes from both the initial state and the goal state
+	until the two searches meet at a common state in the middle.  The solution sequence of actions is constructed from the two search sequences.
+	Remembers which states have been explored in the past to prevent loops by storing them in an associative array.
+Search Strategy: Breadth First Search - guranteed to find an optimal solution.
