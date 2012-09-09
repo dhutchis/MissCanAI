@@ -2,13 +2,13 @@
 	Dylan Hutchison
 	CS 541 Artificial Intelligence HW #1
 	Russel & Norvig Book Problem 3.9
-	Due 12 September 2012
+	Due 19 September 2012
 
 	Finds an optimal solution to the Missionaries and Cannibals problem with 3 missionaries and cannibals on one side of the river.
 	Approach: Graph-based Uninformed Bidirectional search.  Alternates expanding state nodes from both the initial state and the goal state
 		until the two searches meet at a common state in the middle.  The solution sequence of actions is constructed from the two search sequences.
 		Remembers which states have been explored in the past to prevent loops by storing them in an associative array.
-	Search Strategy: Breadth First Search - guranteed to find an optimal solution.
+	Search Strategy: Breadth First Search - guaranteed to find an optimal solution as the first solution found will have minimum cost.
 */
 
 
@@ -131,10 +131,10 @@ struct State
 */
 class StateHolder 
 {
-	State s;
+	immutable State s;
 	StateHolder prev;
 	//uint cost; // 1 more than the prev cost --- Don't need to keep track of cost. We're using BFS - guranteed optimal.
-	bool isForward; // is it on the path going forward or backward?
+	immutable bool isForward; // is it on the path going forward or backward?
 	
 	this(State s, StateHolder prev, bool isForward) {
 		//uint cost = prev is null ? 0 : prev.cost+1;
@@ -214,7 +214,6 @@ State[] doBFS(bool isForward)(ref const(State)[] frontier)
 			StateHolder childStateHolder = stateMap[childState];
 			if (childStateHolder.isForward != isForward) {
 				// we met!
-				writeln("GOT IT!");
 				State[] SS;
 				static if (isForward) {
 					SS = getSolutionSequence(stateToExpandHolder, childStateHolder);
@@ -227,7 +226,7 @@ State[] doBFS(bool isForward)(ref const(State)[] frontier)
 				continue;
 			}
 		} else {
-			// new state - RACE HERE'
+			// new state - RACE HERE for parallel
 			stateMap[childState] = new StateHolder(childState, stateToExpandHolder, isForward);
 			frontier ~= childState;
 		}
