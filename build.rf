@@ -1,5 +1,5 @@
 -od"bin"
--of"bin\MissCanAI.exe"
+-of"bin\MissCanAI"
 
 -I"src"
 

@@ -9,6 +9,8 @@
 		until the two searches meet at a common state in the middle.  The solution sequence of actions is constructed from the two search sequences.
 		Remembers which states have been explored in the past to prevent loops by storing them in an associative array.
 	Search Strategy: Breadth First Search - guaranteed to find an optimal solution as the first solution found will have minimum cost.
+
+	To see debug output, compile with '-debug=MissCanAI'.  Include unittests with '-unittest'.
 */
 
 
